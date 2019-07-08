@@ -1,0 +1,18 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    ast (2.4.0)
+    opal (1.0.0)
+      ast (>= 2.3.0)
+      parser (= 2.5.3.0)
+    parser (2.5.3.0)
+      ast (~> 2.4.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  opal (~> 1.0)
+
+BUNDLED WITH
+   1.17.2
