@@ -163,7 +163,7 @@ INFO_MESSAGE_TEXT
 
     return result unless( result == "" )
 
-    string = @@bcdice.getOriginalMessage
+    string = bcdice.getOriginalMessage
 
     superSuccessValue = 41
 
