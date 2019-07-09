@@ -285,7 +285,7 @@ INFO_MESSAGE_TEXT
         hit_bullet_count = hit_bullet_count_base #보통명중한 탄수의 계산
 
       when :impale
-        hit_bullet_count = impale_bullet_count_base.floor
+        hit_bullet_count = impale_bullet_count_base.to_i
         impale_bullet_count = impale_bullet_count_base.ceil  #관통한 탄수의 계산
       end
 
@@ -300,7 +300,7 @@ INFO_MESSAGE_TEXT
       when :impale
         halfbull = bullet_count / 2.to_f
 
-        hit_bullet_count = halfbull.floor
+        hit_bullet_count = halfbull.to_i
         impale_bullet_count = halfbull.ceil
       end
 
@@ -347,7 +347,7 @@ INFO_MESSAGE_TEXT
   end
 
   def getSetOfBullet(diff)
-    bullet_set_count = diff / 10
+    bullet_set_count = (diff / 10).to_i
 
     if ((diff >= 1) and (diff < 10))
       bullet_set_count = 1  #기능 수치가 9 이하일 때의 최저수치 보장 처리
@@ -357,7 +357,7 @@ INFO_MESSAGE_TEXT
   end
 
   def getHitBulletCountBase(diff, bullet_set_count)
-    hit_bullet_count_base = (bullet_set_count / 2)
+    hit_bullet_count_base = (bullet_set_count / 2).to_i
 
     if ((diff >= 1) and (diff < 10))
       hit_bullet_count_base = 1  #기능 수치가 9 이하일 때의 최저수치 보장
@@ -377,7 +377,7 @@ INFO_MESSAGE_TEXT
       return 1
     end
 
-    count = (bullet_count / 2.to_f).floor
+    count = (bullet_count / 2.to_f).to_i
     return count
   end
 

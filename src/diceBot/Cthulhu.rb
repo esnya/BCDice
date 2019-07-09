@@ -135,7 +135,7 @@ INFO_MESSAGE_TEXT
 
     if( @special_percentage > 0)
       # specialの値設定が無い場合はクリティカル/ファンブル判定もしない
-      diff_special = (diff * @special_percentage / 100).floor
+      diff_special = (diff * @special_percentage / 100).to_i
       if(diff_special < 1)
         diff_special = 1
       end

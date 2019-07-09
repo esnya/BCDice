@@ -135,7 +135,7 @@ INFO_MESSAGE_TEXT
 
     if( @special_percentage > 0)
       # special의 값설정이 없는 경우 크리티컬/펌블 판정도 없다
-      diff_special = (diff * @special_percentage / 100).floor
+      diff_special = (diff * @special_percentage / 100).to_i
       if(diff_special < 1)
         diff_special = 1
       end

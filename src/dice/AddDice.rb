@@ -302,7 +302,7 @@ class AddDice
     when "R"
       dice = value.round
     else
-      dice = value.floor
+      dice = value.to_i
     end
 
     return dice

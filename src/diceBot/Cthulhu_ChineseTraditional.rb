@@ -138,7 +138,7 @@ INFO_MESSAGE_TEXT
 
     if( @special_percentage > 0)
       # 需有special的數值設定才能做爆擊/大失敗的判定
-      diff_special = (diff * @special_percentage / 100).floor
+      diff_special = (diff * @special_percentage / 100).to_i
       if(diff_special < 1)
         diff_special = 1
       end

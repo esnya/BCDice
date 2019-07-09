@@ -289,7 +289,7 @@ INFO_MESSAGE_TEXT
         hit_bullet_count = hit_bullet_count_base #正常命中彈藥數之計算
 
       when :impale
-        hit_bullet_count = impale_bullet_count_base.floor
+        hit_bullet_count = impale_bullet_count_base.to_i
         impale_bullet_count = impale_bullet_count_base.ceil  #貫穿彈藥數之計算
       end
 
@@ -304,7 +304,7 @@ INFO_MESSAGE_TEXT
       when :impale
         halfbull = bullet_count / 2.to_f
 
-        hit_bullet_count = halfbull.floor
+        hit_bullet_count = halfbull.to_i
         impale_bullet_count = halfbull.ceil
       end
 
@@ -351,7 +351,7 @@ INFO_MESSAGE_TEXT
   end
 
   def getSetOfBullet(diff)
-    bullet_set_count = diff / 10
+    bullet_set_count = (diff / 10).to_i
 
     if ((diff >= 1) and (diff < 10))
       bullet_set_count = 1  #技能值９以下的最低限度保障處理
@@ -361,7 +361,7 @@ INFO_MESSAGE_TEXT
   end
 
   def getHitBulletCountBase(diff, bullet_set_count)
-    hit_bullet_count_base = (bullet_set_count / 2)
+    hit_bullet_count_base = (bullet_set_count / 2).to_i
 
     if ((diff >= 1) and (diff < 10))
       hit_bullet_count_base = 1  #技能值９以下的最低限度保障處理
@@ -381,7 +381,7 @@ INFO_MESSAGE_TEXT
       return 1
     end
 
-    count = (bullet_count / 2.to_f).floor
+    count = (bullet_count / 2.to_f).to_i
     return count
   end
 

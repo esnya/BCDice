@@ -25,7 +25,7 @@ INFO_MESSAGE_TEXT
     return '' unless signOfInequality == '<='
 
     diceValue = total_n % 100 # 出目00は100ではなく00とする
-    dice_ten_place = diceValue / 10
+    dice_ten_place = (diceValue / 10).to_i
     dice_one_place = diceValue % 10
 
     debug("total_n", total_n)

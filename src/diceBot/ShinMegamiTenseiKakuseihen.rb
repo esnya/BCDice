@@ -53,7 +53,7 @@ INFO_MESSAGE_TEXT
 
     value %= 100
 
-    dice1 = value / 10
+    dice1 = (value / 10).to_i
     dice2 = value % 10
 
     return [dice1, dice2]

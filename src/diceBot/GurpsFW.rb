@@ -339,7 +339,7 @@ INFO_MESSAGE_TEXT
       tableName = "財宝テーブル";
       diff = $1;
       depth = $2.to_i;
-      num = depth/10;
+      num = (depth / 10).to_i;
       if(num >= 6)
         num = 5;
       end

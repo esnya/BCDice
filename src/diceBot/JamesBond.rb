@@ -26,7 +26,7 @@ INFO_MESSAGE_TEXT
       return " ＞ 失敗"
     end
 
-    base = ((diff + 9) / 10).floor
+    base = ((diff + 9) / 10).to_i
 
     if(total_n <= base)
       return " ＞ 効果1（完璧）"

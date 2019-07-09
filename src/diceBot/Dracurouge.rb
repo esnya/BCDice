@@ -85,7 +85,7 @@ MESSAGETEXT
     oneCount = countTargetDice(diceList, 1)
     sixCount = countTargetDice(diceList, 6)
 
-    gloryDiceCount = (oneCount / 2) + (sixCount / 2)
+    gloryDiceCount = ((oneCount / 2).to_i) + ((sixCount / 2).to_i)
     return gloryDiceCount
   end
 
