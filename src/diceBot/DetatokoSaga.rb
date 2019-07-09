@@ -159,6 +159,7 @@ INFO_MESSAGE_TEXT
   end
 
   def getModifyText(operator, value)
+    return '' if( value == 0)
     operatorText =
       case operator
       when "+"

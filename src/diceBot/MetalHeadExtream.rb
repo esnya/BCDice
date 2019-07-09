@@ -910,7 +910,7 @@ MESSAGETEXT
   # 端数が使いたいので、parren_killer未使用
   def get_value(originalValue, calculateText)
     result = originalValue.to_f
-    calculateArray = calculateText.scan(/[\*\/]\d*/)  # 修正値を分割して配列へ
+    calculateArray = (calculateText || '').scan(/[\*\/]\d*/) # 修正値を分割して配列へ
     calculateArray.each do |i|                        # 配列内ループで補正率を計算
       i =~ /([\*\/])(\d*)/i
       result *= $2.to_i if($1 == '*')

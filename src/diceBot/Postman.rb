@@ -56,11 +56,11 @@ MESSAGETEXT
         diceCount = 2 if(diceCount < 2)
 
         modify = ($2 || 0).to_i
-        modifyAddString = $3
+        modifyAddString = ($3 || '')
 
         type = ($6 || '')
         target = ($7 || 0).to_i
-        targetAddString = $8
+        targetAddString = ($8 || '')
 
         modify_list = modifyAddString.scan(/[+-]\d+/)
         modify_list.each{|i| modify += i.to_i }

@@ -26,7 +26,7 @@ class Net::IRC::Client
       @log.debug "error!!";
       @log.debug e.to_s
       @log.debug $!.inspect
-      @log.debug $@.join("\n")
+      @log.debug $@&.join("\n")
     end
     @log.debug "on_connected passed";
 
