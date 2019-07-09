@@ -1,6 +1,6 @@
 {
   "name": "bcdice-js",
-  "version": "0.11.0",
+  "version": "1.0.0-beta1",
   "description": "Bone & Cards is TRPG Dice Bot",
   "main": "lib/BCDice.js",
   "scripts": {
