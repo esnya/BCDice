@@ -1,31 +1,40 @@
 language: ruby
 before_install:
-  - ./bcdice-js/ci/before_install.sh
+- "./bcdice-js/ci/before_install.sh"
 install:
-  - cd src && bundle install && cd ..
-  - ./bcdice-js/ci/install.sh
+- cd src && bundle install && cd ..
+- "./bcdice-js/ci/install.sh"
 script:
-  - cd src
-  - bundle exec rake
-  - cd ..
-  - ./bcdice-js/ci/script.sh
+- cd src
+- bundle exec rake
+- cd ..
+- "./bcdice-js/ci/script.sh"
 matrix:
   include:
-    - rvm: 2.6
-      env: TRAVIS_CI=1 BCDICE_JS=true
-    - rvm: 2.5
-      env: TRAVIS_CI=1 BCDICE_JS=true
-    - rvm: 2.4
-      env: TRAVIS_CI=1 BCDICE_JS=true
-    - rvm: 2.3
-      env: TRAVIS_CI=1 BCDICE_JS=true
-    - rvm: 2.2.10
-      env: TRAVIS_CI=1
-    - rvm: 2.1.10
-      env: TRAVIS_CI=1
-    - rvm: 2.0.0
-      env: TRAVIS_CI=1
-    - rvm: 1.9.3
-      env: TRAVIS_CI=1
-    # - rvm: 1.8.7
-    #   env: TRAVIS_CI=1
+  - rvm: 2.6
+    env: TRAVIS_CI=1 BCDICE_JS=true
+  - rvm: 2.5
+    env: TRAVIS_CI=1 BCDICE_JS=true
+  - rvm: 2.4
+    env: TRAVIS_CI=1 BCDICE_JS=true
+  - rvm: 2.3
+    env: TRAVIS_CI=1 BCDICE_JS=true
+  - rvm: 2.2.10
+    env: TRAVIS_CI=1
+  - rvm: 2.1.10
+    env: TRAVIS_CI=1
+  - rvm: 2.0.0
+    env: TRAVIS_CI=1
+  - rvm: 1.9.3
+    env: TRAVIS_CI=1
+before_deploy:
+  - cd bcdice-js
+deploy:
+  provider: npm
+  email: dev.ukatama@gmail.com
+  skip_cleanup: true
+  on:
+    tags: true
+    condition: "$BCDICE_JS = true && $RUBY_VERSION=2.6"
+  api_key:
+    secure: J9taoe6fRsOa+N1nh+HJgYbnFBhRTbe7RoP2h6Nh3pqHb1BhSpQPthaEaKU6b9FbHs71uMXbdVNScILsCNpI98aCFlfPx0J2H8MQnYlI85pItZ5NIa6kNtaQhlHyHcmHUGMehY2aQsfr7A0H2fLmRRYsPZ7fRZaVC3UoFLCHYSYHxzNxaLtd3/isNAXA73Ii3lwPOamCwBmQi9GzWIeWtIJbkOyI0zEqJgV+fDwxWFITcSHmpnyD02Zb9rpycT3P/X3M0eWwS92/gfZ+OVusBR4ERK7V5MQGK7CsWGJAUlAZSvu8pqGPRUsURmCMnj3ZLZR6LA25I4qAP1KT1FSpoSN21DCEIZdfrCH1bLVOIWUo6mNDsVjSjVM1KKH+ICUX6VS6L9MZTXbdHIvU5Y/NUWVmyEuAm5CVK+8uYGp0Y/Y/tItFS7HTAEsixK/GV/mMdluq1QgfYmDzyzcX8emdQytWRmFXLm9ku9cOx424p/Dlb7hLjnsb/uvESdq5OKJd8B13vKmnh/q+7U4AsJHP7CvNHmFGBdB/ghf7bopvLNiZlAgaAaoutCUvi6/0cc+bQPBc4Pl8hu476UwKKtkzz08xw5pEngkxibY0bh0pKhbmbgeATAQ9rfquQy+FELrY61gbqKGJ+Hm/K0LvTYkZPQpgbVXJh7TgS8YxW7Pi5P8=
