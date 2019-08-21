@@ -3,7 +3,7 @@
 require 'bcdiceCore'
 require 'diceBot/DiceBotLoader'
 require 'cgiDiceBot'
-require 'DiceBotTestData'
+require 'diceBot/TextTestParser'
 
 class DiceBotTest
   def initialize(testDataPath = nil, dataIndex = nil)
@@ -17,8 +17,10 @@ class DiceBotTest
 
     @bot = CgiDiceBot.new
 
-    @testDataSet = []
+    @testCases = []
     @errorLog = []
+
+    @parser = TextTestParser.new
 
     $isDebug = !!@dataIndex
   end
@@ -27,9 +29,9 @@ class DiceBotTest
   # @return [true] テストを実行できたとき
   # @return [false] テストに失敗した、あるいは実行できなかったとき
   def execute
-    readTestDataSet
+    readTestCases
 
-    if @testDataSet.empty?
+    if @testCases.empty?
       warn('No matched test data!')
       return false
     end
@@ -52,7 +54,7 @@ class DiceBotTest
   end
 
   # テストデータを読み込む
-  def readTestDataSet
+  def readTestCases
     if @testDataPath
       # 指定されたファイルが存在しない場合、中断する
       return unless File.exist?(@testDataPath)
@@ -66,59 +68,34 @@ class DiceBotTest
     targetFiles.each do |filename|
       next if /^_/ === File.basename(filename)
 
-      source =
-        if RUBY_VERSION < '1.9'
-          File.read(filename)
-        else
-          File.read(filename, :encoding => 'UTF-8')
-        end
+      testCases = @parser.load_file(filename)
 
-      dataSetSources = source.
-                       gsub("\r\n", "\n").
-                       tr("\r", "\n").
-                       split("============================\n").
-                       map(&:chomp)
-
-      # ゲームシステムをファイル名から判断する
-      gameType = File.basename(filename, '.txt')
-
-      dataSet =
-        if RUBY_VERSION < '1.9'
-          dataSetSources.each_with_index.map do |dataSetSource, i|
-            DiceBotTestData.parse(dataSetSource, gameType, i + 1)
-          end
-        else
-          dataSetSources.map.with_index(1) do |dataSetSource, i|
-            DiceBotTestData.parse(dataSetSource, gameType, i)
-          end
-        end
-
-      @testDataSet +=
+      @testCases +=
         if @dataIndex.nil?
-          dataSet
+          testCases
         else
-          dataSet.select { |data| data.index == @dataIndex }
+          testCases.select.with_index { |_testCase, index| index == @dataIndex }
         end
     end
   end
 
-  private :readTestDataSet
+  private :readTestCases
 
   # 各テストを実行する
   def doTests
-    @testDataSet.each do |testData|
+    @testCases.each do |testCase|
       begin
-        result = executeCommand(testData).lstrip
+        result = executeCommand(testCase).lstrip
 
-        unless result == testData.output
-          @errorLog << logTextForUnexpected(result, testData)
+        unless result == testCase.output
+          @errorLog << logTextForUnexpected(result, testCase)
           print('X')
 
           # テスト失敗、次へ
           next
         end
       rescue StandardError => e
-        @errorLog << logTextForException(e, testData)
+        @errorLog << logTextForException(e, testCase)
         print('E')
 
         # テスト失敗、次へ
@@ -133,14 +110,14 @@ class DiceBotTest
   end
 
   # ダイスコマンドを実行する
-  def executeCommand(testData)
-    rands = testData.rands
+  def executeCommand(testCase)
+    rands = testCase.rands
     @bot.setRandomValues(rands)
     @bot.setTest
 
     result = ''
-    testData.input.each do |message|
-      result += @bot.roll(message, testData.gameType, @tableDir).first
+    testCase.input.each do |message|
+      result += @bot.roll(message, testCase.gameType, @tableDir).first
     end
 
     unless rands.empty?
@@ -152,17 +129,17 @@ class DiceBotTest
   end
 
   # 期待された出力と異なる場合のログ文字列を返す
-  def logTextForUnexpected(result, data)
+  def logTextForUnexpected(result, testCase)
     logText = <<EOS
-Game type: #{data.gameType}
-Index: #{data.index}
+Game type: #{testCase.gameType}
+Index: #{testCase.name}
 Input:
-#{indent(data.input)}
+#{indent(testCase.input)}
 Expected:
-#{indent(data.output)}
+#{indent(testCase.output)}
 Result:
 #{indent(result)}
-Rands: #{data.randsText}
+Rands: #{testCase.randsText}
 EOS
 
     logText.chomp
@@ -170,18 +147,18 @@ EOS
   private :logTextForUnexpected
 
   # 例外が発生した場合のログ文字列を返す
-  def logTextForException(e, data)
+  def logTextForException(e, testCase)
     logText = <<EOS
-Game type: #{data.gameType}
-Index: #{data.index}
+Game type: #{testCase.gameType}
+Index: #{testCase.name}
 Exception: #{e.message}
 Backtrace:
 #{indent(e.backtrace)}
 Input:
-#{indent(data.input)}
+#{indent(testCase.input)}
 Expected:
-#{indent(data.output)}
-Rands: #{data.randsText}
+#{indent(testCase.output)}
+Rands: #{testCase.randsText}
 EOS
 
     logText.chomp
