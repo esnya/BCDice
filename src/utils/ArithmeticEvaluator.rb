@@ -71,7 +71,7 @@ class ArithmeticEvaluator
     when :roundOff
       return (left.to_f / right).round
     else
-      return left / right
+      return left.div(right)
     end
   end
 
