@@ -1,4 +1,7 @@
-# BCDice
+!! Deprecated !!
+New version -> https://github.com/bcdice/bcdice-js
+
+#  BCDice
 
 [![Build Status](https://travis-ci.org/bcdice/BCDice.svg?branch=master)](https://travis-ci.org/bcdice/BCDice)
 [![codecov](https://codecov.io/gh/bcdice/BCDice/branch/master/graph/badge.svg)](https://codecov.io/gh/bcdice/BCDice)
