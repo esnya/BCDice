@@ -56,9 +56,9 @@ module BCDice
         return '' unless cmp_op == :<=
 
         if total <= target
-          " ＞ 成功(成功度#{(target - total) / 10})"
+          " ＞ 成功(成功度#{((target - total) / 10).to_i})"
         else
-          " ＞ 失敗(失敗度#{(total - target) / 10})"
+          " ＞ 失敗(失敗度#{((total - target) / 10).to_i})"
         end
       end
 

@@ -53,7 +53,7 @@ module BCDice
       Item = Struct.new(:range, :content)
 
       # 項目を選ぶときのダイスロールの方法を表す正規表現
-      DICE_ROLL_METHOD_RE = /\A(\d+)D(\d+)\z/i.freeze
+      DICE_ROLL_METHOD_RE = /^(\d+)D(\d+)$/i.freeze
 
       # 表を振った結果の整形処理（既定の処理）
       DEFAULT_FORMATTER = lambda do |table, result|

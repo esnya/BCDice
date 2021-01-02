@@ -42,7 +42,7 @@ module BCDice
       end
 
       def eval_game_system_specific_command(command)
-        m = /\A(\d+)?(YZE|MYZ)(\d+)(\+(\d+))?(\+(\d+))?/.match(command)
+        m = /^(\d+)?(YZE|MYZ)(\d+)(\+(\d+))?(\+(\d+))?/.match(command)
         unless m
           return ''
         end

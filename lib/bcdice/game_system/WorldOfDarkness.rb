@@ -39,7 +39,7 @@ module BCDice
         enabled_reroll = false
         enabled_20th = false
 
-        md = command.match(/\A(\d+)(ST[SA]?)(\d+)?([+-]\d+)?/)
+        md = command.match(/^(\d+)(ST[SA]?)(\d+)?([+-]\d+)?/)
 
         dice_pool = md[1].to_i
         case md[2]

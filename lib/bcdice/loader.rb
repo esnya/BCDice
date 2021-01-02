@@ -28,7 +28,7 @@ module BCDice
       class_name = id.tr(":.", "_")
 
       # 対象ディレクトリの外にあるファイルをロードされないように制約を設ける
-      unless /\A[A-Z]\w*\z/.match?(class_name)
+      unless /^[A-Z]\w*$/.match?(class_name)
         return nil
       end
 

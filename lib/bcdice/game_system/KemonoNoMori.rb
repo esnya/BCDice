@@ -68,7 +68,7 @@ module BCDice
 
         # 行為判定の成功度は [目標値の10の位の数+1]
         # 継続判定の成功度は固定で+1
-        success_degree = is_action_judge ? target_total / 10 + 1 : 1
+        success_degree = is_action_judge ? (target_total / 10).to_i + 1 : 1
 
         dice_total = @randomizer.roll_once(12)
         debug('dice_total, target_total, success_degree = ', dice_total, target_total, success_degree)

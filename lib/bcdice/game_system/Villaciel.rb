@@ -210,8 +210,8 @@ module BCDice
 
         roll_result1 = @randomizer.roll_once(D6)
         chart_text, roll_result2 = case chart_symbol
-                                   when 'V' then get_table_by_1d6(VILLACIEL_PREVIOUS_JOB_CHART[(roll_result1 - 1) / 3])
-                                   when 'A' then get_table_by_1d6(ARMESEAR_PREVIOUS_JOB_CHART[(roll_result1 - 1) / 2])
+                                   when 'V' then get_table_by_1d6(VILLACIEL_PREVIOUS_JOB_CHART[((roll_result1 - 1) / 3).to_i])
+                                   when 'A' then get_table_by_1d6(ARMESEAR_PREVIOUS_JOB_CHART[((roll_result1 - 1) / 2).to_i])
                                    end
 
         chart_title = case chart_symbol
@@ -278,7 +278,7 @@ module BCDice
                                                    when 6 then 3
                                                    end
                                      get_table_by_1d6(VILLACIEL_PETIT_QUEST_CHART[chart_index])
-                                   when 'A' then get_table_by_1d6(ARMESEAR_PETIT_QUEST_CHART[(roll_result1 - 1) / 2])
+                                   when 'A' then get_table_by_1d6(ARMESEAR_PETIT_QUEST_CHART[((roll_result1 - 1) / 2).to_i])
                                    end
 
         chart_title = case chart_symbol

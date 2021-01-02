@@ -42,11 +42,11 @@ module BCDice
         return result if result
 
         case command
-        when /\ACRC(\w)(\d+)\z/
+        when /^CRC(\w)(\d+)$/
           suv = Regexp.last_match(1)
           num = Regexp.last_match(2)
           return mh_crc_table(suv, num)
-        when /\AHR<=(.+)/
+        when /^HR<=(.+)/
           target = ArithmeticEvaluator.eval(
             Regexp.last_match(1), round_type: @round_type
           )

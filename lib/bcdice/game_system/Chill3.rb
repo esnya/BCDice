@@ -24,7 +24,7 @@ module BCDice
         return '' unless cmp_op == :<=
 
         # ゾロ目ならC-ResultかBotch
-        tens = (dice_total / 10) % 10
+        tens = (dice_total / 10).to_i % 10
         ones = dice_total % 10
 
         if tens == ones
@@ -38,7 +38,7 @@ module BCDice
             return " ＞ Ｃ成功"
           end
         elsif (total <= target) || (dice_total == 1) # 01は必ず成功
-          if total <= (target / 2)
+          if total <= (target / 2).to_i
             return " ＞ Ｈ成功"
           else
             return " ＞ Ｌ成功"

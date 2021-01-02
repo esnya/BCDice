@@ -113,8 +113,8 @@ module BCDice
       def getCheckResultText(total, diff, fumbleable = false)
         if total <= diff
           return "決定性的成功" if total == 1
-          return "極限的成功" if total <= (diff / 5)
-          return "困難的成功" if total <= (diff / 2)
+          return "極限的成功" if total <= (diff / 5).to_i
+          return "困難的成功" if total <= (diff / 2).to_i
 
           return "通常成功"
         end
@@ -344,7 +344,7 @@ module BCDice
       end
 
       def getSetOfBullet(diff)
-        bullet_set_count = diff / 10
+        bullet_set_count = (diff / 10).to_i
 
         if (diff >= 1) && (diff < 10)
           bullet_set_count = 1 # 技能值９以下的最低限度保障處理
@@ -354,7 +354,7 @@ module BCDice
       end
 
       def getHitBulletCountBase(diff, bullet_set_count)
-        hit_bullet_count_base = (bullet_set_count / 2)
+        hit_bullet_count_base = (bullet_set_count / 2).to_i
 
         if (diff >= 1) && (diff < 10)
           hit_bullet_count_base = 1 # 技能值９以下的最低限度保障處理

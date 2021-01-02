@@ -71,7 +71,7 @@ module BCDice
 
       def eval_game_system_specific_command(command)
         case command
-        when /\AFF/
+        when /^FF/
           # 対抗なしロール
           # '成功' or '失敗' を出力する
           #
@@ -88,7 +88,7 @@ module BCDice
           expr = "#{total}[#{dice_str}]"
           succ = successful_or_failed(total, diff)
           sequence = [parentheses(dice_command), expr, succ]
-        when /\AFR/
+        when /^FR/
           # 対抗ロール
           # 値を出力する
           #
@@ -105,13 +105,13 @@ module BCDice
           expr = "#{total}[#{dice_str}]#{explicit_sign corr}"
           crit = critical(total)
           sequence = [parentheses(dice_command), expr, crit, total + corr].compact
-        when /\AFD/
+        when /^FD/
           # 武器防具ロール
           # ダメージを出力する
           #
           md = Regexp.last_match
           term = md.post_match
-          md = /\A\[(.+)\]/.match(term)
+          md = /^\[(.+)\]/.match(term)
           unless md
             return 'ダメージスロットは必須です。'
           end

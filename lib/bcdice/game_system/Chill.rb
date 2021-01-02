@@ -34,9 +34,9 @@ module BCDice
           " ＞ 失敗"
         elsif total >= (target * 0.9)
           " ＞ Ｌ成功"
-        elsif total >= (target / 2)
+        elsif total >= (target / 2).to_i
           " ＞ Ｍ成功"
-        elsif total >= (target / 10)
+        elsif total >= (target / 10).to_i
           " ＞ Ｈ成功"
         else
           " ＞ Ｃ成功"

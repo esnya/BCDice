@@ -183,7 +183,7 @@ module BCDice
         dice1 = @randomizer.roll_once(10)
         dice2 = @randomizer.roll_once(10)
 
-        num = ((dice1 - 1) / 2) * 10 + (dice2 - 1)
+        num = ((dice1 - 1) / 2).to_i * 10 + (dice2 - 1)
 
         text = table[num]
 

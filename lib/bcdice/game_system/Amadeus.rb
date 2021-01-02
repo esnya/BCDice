@@ -89,7 +89,7 @@ module BCDice
           result = check_success(achieve, dice, signOfInequality, target, specialNum)
           if is_loop
             inga_table = translate("Amadeus.inga_table")
-            inga = inga_table[dice - 1]
+            inga = inga_table[(dice - 1)]
             message += "#{achieve}_#{result}[#{dice}#{inga}]"
           else
             message += "#{achieve}_#{result}[#{dice}]"

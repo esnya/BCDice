@@ -68,7 +68,7 @@ module BCDice
           cmd.eval()
         end
 
-        if results.count(nil) == @times
+        if results.count { |i| i == nil } == @times
           return result_with_text("繰り返し対象のコマンドが実行できませんでした (#{@trailer})")
         end
 
@@ -84,7 +84,7 @@ module BCDice
       private
 
       def validate
-        if /\A(repeat|rep|x)\d+/.match?(@trailer)
+        if /^(repeat|rep|x)\d+/.match?(@trailer)
           result_with_text("Repeatコマンドの重複はできません")
         elsif @times < 1 || REPEAT_LIMIT < @times
           result_with_text("繰り返し回数は1以上、#{REPEAT_LIMIT}以下としてください")

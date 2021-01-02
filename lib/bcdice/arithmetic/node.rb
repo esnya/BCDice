@@ -48,6 +48,8 @@ module BCDice
         def eval(round_type)
           l = @lhs.eval(round_type)
           r = @rhs.eval(round_type)
+
+          raise ZeroDivisionError if r == 0
           divide_and_round(l, r, round_type)
         end
 
@@ -103,7 +105,7 @@ module BCDice
           when RoundType::ROUND
             (dividend.to_f / divisor).round
           else # RoundType::FLOOR
-            dividend / divisor
+            (dividend / divisor).to_i
           end
         end
       end
@@ -155,7 +157,7 @@ module BCDice
         # @param [Symbol] _round_type ゲームシステムの端数処理設定
         # @return [Integer]
         def divide_and_round(dividend, divisor, _round_type)
-          dividend / divisor
+          (dividend / divisor).to_i
         end
       end
 

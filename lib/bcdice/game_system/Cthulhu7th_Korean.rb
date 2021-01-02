@@ -110,8 +110,8 @@ module BCDice
       def getCheckResultText(total, diff, fumbleable = false)
         if total <= diff
           return "대성공" if total == 1
-          return "대단한 성공" if total <= (diff / 5)
-          return "어려운 성공" if total <= (diff / 2)
+          return "대단한 성공" if total <= (diff / 5).to_i
+          return "어려운 성공" if total <= (diff / 2).to_i
 
           return "보통 성공"
         end
@@ -302,7 +302,7 @@ module BCDice
           lost_bullet_count = bullet_count
         end
 
-        return hit_bullet_count, impale_bullet_count, lost_bullet_count
+        return hit_bullet_count.to_i, impale_bullet_count.to_i, lost_bullet_count.to_i
       end
 
       def getSuccessListImpaleBulletList(more_difficlty)
@@ -341,7 +341,7 @@ module BCDice
       end
 
       def getSetOfBullet(diff)
-        bullet_set_count = diff / 10
+        bullet_set_count = (diff / 10).to_i
 
         if (diff >= 1) && (diff < 10)
           bullet_set_count = 1 # 기능 수치가 9 이하일 때의 최저수치 보장 처리
@@ -351,7 +351,7 @@ module BCDice
       end
 
       def getHitBulletCountBase(diff, bullet_set_count)
-        hit_bullet_count_base = (bullet_set_count / 2)
+        hit_bullet_count_base = (bullet_set_count / 2).to_i
 
         if (diff >= 1) && (diff < 10)
           hit_bullet_count_base = 1 # 기능 수치가 9 이하일 때의 최저수치 보장

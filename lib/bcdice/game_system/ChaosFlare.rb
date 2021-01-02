@@ -87,7 +87,7 @@ module BCDice
             return "因果表(#{num}) ＞ #{FATE_TABLE[num][0]}"
           end
 
-          dice1 = num / 10
+          dice1 = (num / 10).to_i
           dice2 = num % 10
           if !(1..6).include?(dice1) || !(1..6).include?(dice2)
             return nil
@@ -98,7 +98,7 @@ module BCDice
         end
 
         index1 = dice1
-        index2 = (dice2 / 2) - 1
+        index2 = (dice2 / 2).to_i - 1
         return "因果表(#{dice1}#{dice2}) ＞ #{FATE_TABLE[index1][index2]}"
       end
 

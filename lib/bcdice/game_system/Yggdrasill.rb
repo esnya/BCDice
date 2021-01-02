@@ -198,7 +198,7 @@ module BCDice
             1
           elsif value <= 11
             dice = @randomizer.roll_once(6)
-            total = dice / 2
+            total = (dice / 2).to_i
             "#{total}(#{dice}[#{dice}]/2)"
           elsif value <= 14
             dice = @randomizer.roll_once(6)

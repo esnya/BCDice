@@ -1406,7 +1406,7 @@ module BCDice
               '[現在エネミー未実装の為振り直ししてください]'
             ]],
           ]
-          case event / 100
+          case (event / 100).to_i
           when 1
             areaText = "洞窟"
           when 2

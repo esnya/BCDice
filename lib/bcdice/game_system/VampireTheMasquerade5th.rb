@@ -44,7 +44,7 @@ module BCDice
       register_prefix('\d*VMF.*')
 
       def eval_game_system_specific_command(command)
-        m = /\A(\d+)?(VMF)(\d+)(\+(\d+))?/.match(command)
+        m = /^(\d+)?(VMF)(\d+)(\+(\d+))?/.match(command)
         unless m
           return ''
         end
@@ -94,7 +94,7 @@ module BCDice
 
       def get_critical_success(ten_dice)
         # 10の目が2個毎に追加2成功
-        return ((ten_dice / 2) * 2)
+        return ((ten_dice / 2).to_i * 2)
       end
 
       def make_dice_roll(dice_pool)

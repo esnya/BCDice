@@ -33,7 +33,7 @@ module BCDice
         elsif total <= 1
           " ＞ 絶対成功(達成値1+SL)"
         elsif total <= target
-          dig10 = total / 10
+          dig10 = (total / 10).to_i
           dig1 = total - dig10 * 10
           dig10 = 0 if dig10 >= 10
           dig1 = 0 if dig1 >= 10 # 条件的にはあり得ない(笑

@@ -48,8 +48,8 @@ module BCDice
         return '' if target == '?'
         return '' unless cmp_op == :<=
 
-        t10 = total / 10
-        d10 = target / 10
+        t10 = (total / 10).to_i
+        d10 = (target / 10).to_i
         sl = d10 - t10
 
         if total <= 5 && sl < 1
@@ -279,7 +279,7 @@ module BCDice
         if dice == 100
           return 0, 0
         else
-          return dice / 10, dice % 10
+          return (dice / 10).to_i, dice % 10
         end
       end
 

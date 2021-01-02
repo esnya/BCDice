@@ -52,12 +52,12 @@ module BCDice
       def get_critical_border(critical_border_text, success_rate)
         return critical_border_text.to_i unless critical_border_text.nil?
 
-        critical_border = [success_rate / 5, 1].max
+        critical_border = [success_rate / 5, 1].max.to_i
         return critical_border
       end
 
       def check_roll_repeat_attack(success_rate, repeat_count, critical_border)
-        success_rate_per_one = success_rate / repeat_count
+        success_rate_per_one = (success_rate / repeat_count).to_i
 
         check_roll(success_rate_per_one, critical_border)
       end

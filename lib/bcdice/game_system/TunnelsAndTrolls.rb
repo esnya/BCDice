@@ -253,7 +253,7 @@ module BCDice
       end
 
       def success_level(total, dice_total)
-        level = (total - 15) / 5
+        level = ((total - 15) / 5).to_i
         if level <= 0
           "失敗 ＞ 経験値#{dice_total}"
         else

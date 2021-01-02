@@ -15,7 +15,7 @@ module BCDice
           def eval(round_type)
             value =
               begin
-                @expr.eval(round_type)
+                @expr.eval(round_type).to_i
               rescue ZeroDivisionError
                 "ゼロ除算が発生したため計算できませんでした"
               end

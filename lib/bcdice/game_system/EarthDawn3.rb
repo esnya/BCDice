@@ -147,7 +147,7 @@ module BCDice
 
         result = [0, 0, 0, 0, 0, 0, 0]
 
-        loopCount = (overStep / stepRythm.size)
+        loopCount = (overStep / stepRythm.size).to_i
 
         loopCount.times do
           addStepToResult(result, baseStepInfo)

@@ -68,7 +68,7 @@ module BCDice
         end
 
         success_rate = ArithmeticEvaluator.eval(m[1])
-        critical_border = m[4]&.to_i || [success_rate / 5, 1].max
+        critical_border = m[4]&.to_i || [(success_rate / 5).to_i, 1].max
         fumble_border = m[6]&.to_i || (success_rate < 100 ? 96 : 99)
 
         total = @randomizer.roll_once(100)

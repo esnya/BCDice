@@ -89,7 +89,7 @@ module BCDice
         one_count = dice_list.count(1)
         six_count = dice_list.count(6)
 
-        return (one_count / 2) + (six_count / 2)
+        return (one_count / 2).to_i + (six_count / 2).to_i
       end
 
       def apply_thirsty_point(dice_list, thirsty_point)
@@ -272,7 +272,7 @@ module BCDice
           list = Array.new(times) do
             randomizer.roll_barabara(sides.length, 6)
                       .reverse # テスト系の互換性のために反転する
-                      .map.with_index { |x, idx| x * (10**idx) }
+                      .map.with_index { |x, idx| x * (10**idx).to_i }
                       .sum()
           end
 

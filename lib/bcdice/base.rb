@@ -328,7 +328,7 @@ module BCDice
       num = @randomizer.roll_sum(count, 6)
       debug("num", num)
 
-      index = ((num - 1) / 2)
+      index = ((num - 1) / 2).to_i
       debug("index", index)
 
       text = table[index]

@@ -81,8 +81,8 @@ module BCDice
           return total >= target ? "成功" : "失敗"
         end
 
-        success_lv = (total + 1) / 5
-        success_nl = (total - 5) / 5
+        success_lv = ((total + 1) / 5).to_i
+        success_nl = ((total - 5) / 5).to_i
 
         return success_lv > 0 ? "Lv#{success_lv}/NL#{success_nl}成功" : "失敗"
       end

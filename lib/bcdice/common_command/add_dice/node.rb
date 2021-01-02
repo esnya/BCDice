@@ -140,7 +140,7 @@ module BCDice
             lhs = @lhs.eval(game_system, randomizer)
             rhs = @rhs.eval(game_system, randomizer)
 
-            return calc(lhs, rhs, game_system.round_type)
+            return calc(lhs, rhs, game_system.round_type).to_i
           end
 
           # @return [Boolean]
@@ -177,7 +177,7 @@ module BCDice
           # @param _round_type [Symbol] ゲームシステムの端数処理設定
           # @return [Integer] 演算の結果
           def calc(lhs, rhs, _round_type)
-            lhs.send(@op, rhs)
+            lhs.send(@op, rhs).to_i
           end
 
           # S式で使う演算子の表現を返す
@@ -242,7 +242,7 @@ module BCDice
               return 1
             end
 
-            return divide_and_round(lhs, rhs, round_type)
+            return divide_and_round(lhs, rhs, round_type).to_i
           end
 
           # 除算および端数処理を行う
@@ -273,7 +273,7 @@ module BCDice
             when RoundType::ROUND
               (dividend.to_f / divisor).round
             else # RoundType::FLOOR
-              dividend / divisor
+              (dividend / divisor).floor
             end
           end
         end
@@ -319,7 +319,7 @@ module BCDice
           # @param (see DivideWithGameSystemDefault#divide_and_round)
           # @return [Integer]
           def divide_and_round(dividend, divisor, _round_type)
-            dividend / divisor
+            (dividend / divisor).to_i
           end
         end
 
@@ -342,7 +342,7 @@ module BCDice
           # @param [Randomizer] randomizer ランダマイザ
           # @return [Integer] 評価結果
           def eval(game_system, randomizer)
-            -@body.eval(game_system, randomizer)
+            -@body.eval(game_system, randomizer).to_i
           end
 
           # @return [Boolean]
@@ -398,7 +398,7 @@ module BCDice
             total = dice_list.sum()
             @text = "#{total}[#{dice_list.join(',')}]"
 
-            return total
+            return total.to_i
           end
 
           # @return [Boolean]
@@ -525,7 +525,7 @@ module BCDice
 
             @text = "#{total}[#{sorted_values.join(',')}]"
 
-            return total
+            return total.to_i
           end
 
           # @return [Boolean]
@@ -566,7 +566,7 @@ module BCDice
           # @param randomizer [Randomizer]
           # @return [integer]
           def eval(game_system, randomizer)
-            @expr.eval(game_system, randomizer)
+            @expr.eval(game_system, randomizer).to_i
           end
 
           # @return [Boolean]
@@ -599,7 +599,7 @@ module BCDice
           # ノードを初期化する
           # @param [Integer] literal 値
           def initialize(literal)
-            @literal = literal
+            @literal = literal.to_i
           end
 
           # 符号を反転した結果の数値ノードを返す
@@ -611,7 +611,7 @@ module BCDice
           # ノードを評価する
           # @return [Integer] 格納している値
           def eval(_game_system, _randomizer)
-            @literal
+            @literal.to_i
           end
 
           # @return [Boolean]

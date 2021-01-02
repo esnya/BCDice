@@ -53,7 +53,7 @@ module BCDice
           dice_values = randomizer.roll_barabara(@num, 10)
 
           # ファンブル：出目の半分（小数点以下切り上げ）以上が1の場合
-          fumble = dice_values.count(1) >= (dice_values.length + 1) / 2
+          fumble = dice_values.count(1) >= ((dice_values.length + 1) / 2).to_i
 
           sorted_dice_values = dice_values.sort
           roll_result = calculate_roll_result(sorted_dice_values)
@@ -234,7 +234,7 @@ module BCDice
       private
 
       # 判定コマンドの正規表現
-      TEST_RE = /\A(\d+)D10((?:[-+]\d+)+)?(>=?)(\d+)\z/.freeze
+      TEST_RE = /^(\d+)D10((?:[-+]\d+)+)?(>=?)(\d+)$/.freeze
 
       # 構文解析する
       # @param [String] command コマンド

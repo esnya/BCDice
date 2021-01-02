@@ -66,7 +66,7 @@ module BCDice
         # 成功値
         success_value = 2 * critical + success - fumble
 
-        "#{values} ＞ #{success_value} ＞ #{result_text(success_value)}"
+        "[#{values.join(', ')}] ＞ #{success_value} ＞ #{result_text(success_value)}"
       end
 
       # @param [Integer] success

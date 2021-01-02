@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "bcdice/base"
+require "bcdice/arithmetic_evaluator"
 
 module BCDice
   module GameSystem
@@ -358,13 +359,13 @@ module BCDice
           if index <= 6
             translate("LogHorizon.TRS.below_lower_limit", value: 6) # 6以下の出目は未定義です
           elsif index <= 62
-            @items[index]
+            @items[index.to_s]
           elsif index <= 72
-            "#{@items[index - 10]}&80G"
+            "#{@items[(index - 10).to_s]}&80G"
           elsif index <= 82
-            "#{@items[index - 20]}&160G"
+            "#{@items[(index - 20).to_s]}&160G"
           elsif index <= 87
-            "#{@items[index - 30]}&260G"
+            "#{@items[(index - 30).to_s]}&260G"
           else
             translate("LogHorizon.TRS.exceed_upper_limit", value: 88) # 88以上の出目は未定義です
           end
@@ -379,7 +380,7 @@ module BCDice
           if index <= 6
             translate("LogHorizon.TRS.below_lower_limit", value: 6)
           elsif index <= 53
-            @items[index]
+            @items[index.to_s]
           else
             translate("LogHorizon.TRS.exceed_upper_limit", value: 54)
           end
@@ -394,13 +395,13 @@ module BCDice
           if index <= 6
             translate("LogHorizon.TRS.below_lower_limit", value: 6)
           elsif index <= 162
-            @items[index]
+            @items[index.to_s]
           elsif index <= 172
-            "#{@items[index - 10]}&200G"
+            "#{@items[(index - 10).to_s]}&200G"
           elsif index <= 182
-            "#{@items[index - 20]}&400G"
+            "#{@items[(index - 20).to_s]}&400G"
           elsif index <= 187
-            "#{@items[index - 30]}&600G"
+            "#{@items[(index - 30).to_s]}&600G"
           else
             translate("LogHorizon.TRS.exceed_upper_limit", value: 188)
           end
@@ -509,7 +510,7 @@ module BCDice
 
         table_name = translate("LogHorizon.ESTL.name")
         table = translate("LogHorizon.ESTL.items")
-        chosen = table[total].chomp
+        chosen = table[total.to_s].chomp
 
         return "#{table_name}(#{total}#{dice_str})\n#{chosen}"
       end

@@ -217,9 +217,9 @@ module BCDice
 
         if total == 1
           ResultLevel.new(:critical)
-        elsif total <= (difficulty / 5)
+        elsif total <= (difficulty / 5).to_i
           ResultLevel.new(:extreme_success)
-        elsif total <= (difficulty / 2)
+        elsif total <= (difficulty / 2).to_i
           ResultLevel.new(:hard_success)
         elsif total <= difficulty
           ResultLevel.new(:regular_success)
@@ -278,8 +278,8 @@ module BCDice
         end
 
         # ボレーの上限の設定がおかしい場合の注意表示
-        if (bullet_set_count_cap > diff / 10) && (diff > 39) && !Regexp.last_match(6).nil?
-          bullet_set_count_cap = diff / 10
+        if (bullet_set_count_cap > (diff / 10).to_i) && (diff > 39) && !Regexp.last_match(6).nil?
+          bullet_set_count_cap = (diff / 10).to_i
           output += "ボレーの弾丸の数の上限は\[技能値÷10（切り捨て）\]発なので、それより高い数を指定できません。ボレーの弾丸の数を#{bullet_set_count_cap}発に変更します。\n"
         elsif (diff <= 39) && (bullet_set_count_cap > 3) && !Regexp.last_match(6).nil?
           bullet_set_count_cap = 3
@@ -444,7 +444,7 @@ module BCDice
           lost_bullet_count = bullet_count
         end
 
-        return hit_bullet_count, impale_bullet_count, lost_bullet_count
+        return hit_bullet_count.to_i, impale_bullet_count.to_i, lost_bullet_count.to_i
       end
 
       def getSuccessListImpaleBulletList(more_difficulty)
@@ -483,7 +483,7 @@ module BCDice
       end
 
       def getSetOfBullet(diff, bullet_set_count_cap)
-        bullet_set_count = diff / 10
+        bullet_set_count = (diff / 10).to_i
 
         if bullet_set_count_cap < bullet_set_count
           bullet_set_count = bullet_set_count_cap
@@ -497,7 +497,7 @@ module BCDice
       end
 
       def getHitBulletCountBase(diff, bullet_set_count)
-        hit_bullet_count_base = (bullet_set_count / 2)
+        hit_bullet_count_base = (bullet_set_count / 2).to_i
 
         if (diff >= 1) && (diff < 30)
           hit_bullet_count_base = 1 # 技能値29以下での最低値保障

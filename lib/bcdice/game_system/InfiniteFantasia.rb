@@ -26,15 +26,15 @@ module BCDice
         end
 
         output =
-          if total <= (target / 32)
+          if total <= (target / 32).to_i
             " ＞ 32レベル成功(32Lv+)"
-          elsif total <= (target / 16)
+          elsif total <= (target / 16).to_i
             " ＞ 16レベル成功(16LV+)"
-          elsif total <= (target / 8)
+          elsif total <= (target / 8).to_i
             " ＞ 8レベル成功"
-          elsif total <= (target / 4)
+          elsif total <= (target / 4).to_i
             " ＞ 4レベル成功"
-          elsif total <= (target / 2)
+          elsif total <= (target / 2).to_i
             " ＞ 2レベル成功"
           else
             " ＞ 1レベル成功"

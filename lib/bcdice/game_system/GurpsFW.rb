@@ -321,7 +321,7 @@ module BCDice
           tableName = "財宝テーブル"
           diff = Regexp.last_match(1)
           depth = Regexp.last_match(2).to_i
-          num = depth / 10
+          num = (depth / 10).to_i
           if num >= 6
             num = 5
           end

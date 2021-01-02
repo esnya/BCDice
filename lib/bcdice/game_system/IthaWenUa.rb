@@ -20,7 +20,7 @@ module BCDice
         return '' unless cmp_op == :<=
 
         diceValue = total % 100
-        dice0 = diceValue / 10 # 10の位を代入
+        dice0 = (diceValue / 10).to_i # 10の位を代入
         dice1 = diceValue % 10 # 1の位を代入
 
         if (dice0 == 0) && (dice1 == 1)

@@ -101,7 +101,7 @@ module BCDice
         debug("移動修正", bonus)
 
         total = @randomizer.roll_once(6)
-        movePointBase = (total / 2) <= 0 ? 1 : (total / 2)
+        movePointBase = (total / 2).to_i <= 0 ? 1 : (total / 2).to_i
         movePoint = movePointBase + bonus
         debug("移動エリア数", movePoint)
 

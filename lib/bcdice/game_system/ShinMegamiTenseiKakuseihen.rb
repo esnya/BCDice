@@ -45,7 +45,7 @@ module BCDice
       def split_tens(value)
         value %= 100
 
-        ones = value / 10
+        ones = (value / 10).to_i
         tens = value % 10
 
         return [ones, tens]

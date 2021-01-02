@@ -86,14 +86,14 @@ module BCDice
 
         diceBase = dice1
 
-        dice1 = diceBase / 10
+        dice1 = (diceBase / 10).to_i
         dice2 = diceBase % 10
 
         if isValidDice(dice1, dice2)
           return dice1, dice2
         end
 
-        dice1 = diceBase / 100
+        dice1 = (diceBase / 100).to_i
         dice2 = diceBase % 100
 
         if isValidDice(dice1, dice2)

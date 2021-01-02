@@ -172,7 +172,7 @@ module BCDice
       end
 
       # 超越判定のパターン
-      TRANSCENDENT_TEST_RE = /\A2D6?@(\d+)([-+\d]+)?(?:(>=?)(\d+))?/.freeze
+      TRANSCENDENT_TEST_RE = /^2D6?@(\d+)([-+\d]+)?(?:(>=?)(\d+))?/.freeze
 
       def eval_game_system_specific_command(command)
         case command

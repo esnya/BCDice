@@ -21,7 +21,7 @@ module BCDice
         return '' unless cmp_op == :<=
 
         diceValue = total % 100 # 出目00は100ではなく00とする
-        dice_ten_place = diceValue / 10
+        dice_ten_place = (diceValue / 10).to_i
         dice_one_place = diceValue % 10
 
         if dice_ten_place == dice_one_place

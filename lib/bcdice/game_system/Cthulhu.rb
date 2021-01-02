@@ -166,7 +166,7 @@ module BCDice
 
       def compare(total, target, broken_number = 0)
         result = CompareResult.new(@locale)
-        target_special = (target * @special_percentage / 100).clamp(1, 100)
+        target_special = (target * @special_percentage / 100).to_i.clamp(1, 100)
 
         if (total <= target) && (total < 100)
           result.success = true

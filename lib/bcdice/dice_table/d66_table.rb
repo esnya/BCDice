@@ -37,7 +37,7 @@ module BCDice
         end
 
         key = dice[0] * 10 + dice[1]
-        chosen = @items[key]
+        chosen = @items[key] || @items[key.to_s]
         chosen = chosen.roll(randomizer) if chosen.respond_to?(:roll)
         return RollResult.new(@name, key, chosen)
       end

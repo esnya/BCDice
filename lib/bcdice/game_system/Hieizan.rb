@@ -21,7 +21,7 @@ module BCDice
 
         if total <= 1
           # 1は自動成功
-          if total <= (target / 5)
+          if total <= (target / 5).to_i
             " ＞ 大成功"
           else
             " ＞ 自動成功"
@@ -33,7 +33,7 @@ module BCDice
           # 96-00は自動失敗
           " ＞ 自動失敗"
         elsif total <= target
-          if total <= (target / 5)
+          if total <= (target / 5).to_i
             # 目標値の1/5以下は大成功
             " ＞ 大成功"
           else

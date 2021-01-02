@@ -57,18 +57,18 @@ module BCDice
       end
 
       # 難易度の値の正規表現
-      DIFFICULTY_VALUE_RE = /UH|[2-6KENH]/i.freeze
+      DIFFICULTY_VALUE_RE = 'UH|[2-6KENH]'.freeze
       # 難易度の正規表現
-      DIFFICULTY_RE = /\[(#{DIFFICULTY_VALUE_RE})\]|@(#{DIFFICULTY_VALUE_RE})/io.freeze
+      DIFFICULTY_RE = "(\\[(#{DIFFICULTY_VALUE_RE})\\]|@(#{DIFFICULTY_VALUE_RE}))".freeze
 
       # 通常判定の正規表現
-      NJ_RE = /\A(S)?NJ(\d+)#{DIFFICULTY_RE}?\z/io.freeze
+      NJ_RE = /^(S)?NJ(\d+)#{DIFFICULTY_RE}?$/io.freeze
       # 回避判定の正規表現
-      EV_RE = %r{\AEV(\d+)#{DIFFICULTY_RE}?(?:/(\d+))?\z}io.freeze
+      EV_RE = /^EV(\d+)#{DIFFICULTY_RE}?(?:\/(\d+))?$/io.freeze
       # 近接攻撃の正規表現
-      AT_RE = /\AAT(\d+)#{DIFFICULTY_RE}?\z/io.freeze
+      AT_RE = /^AT(\d+)#{DIFFICULTY_RE}?$/io.freeze
       # 電子戦の正規表現
-      EL_RE = /\AEL(\d+)#{DIFFICULTY_RE}?\z/io.freeze
+      EL_RE = /^EL(\d+)#{DIFFICULTY_RE}?$/io.freeze
 
       # 回避判定のノード
       EV = Struct.new(:num, :difficulty, :targetValue)
@@ -90,7 +90,7 @@ module BCDice
         m = NJ_RE.match(str)
         return str unless m
 
-        b_roll = bRollCommand(m[2], integerValueOfDifficulty(m[3] || m[4]))
+        b_roll = bRollCommand(m[2], integerValueOfDifficulty(m[4] || m[5]))
         return "#{m[1]}#{b_roll}"
       end
 
@@ -136,8 +136,8 @@ module BCDice
       # @return [EV]
       def parseEV(m)
         num = m[1].to_i
-        difficulty = integerValueOfDifficulty(m[2] || m[3])
-        targetValue = m[4]&.to_i
+        difficulty = integerValueOfDifficulty(m[3] || m[4])
+        targetValue = m[5]&.to_i
 
         return EV.new(num, difficulty, targetValue)
       end
@@ -147,7 +147,7 @@ module BCDice
       # @return [AT]
       def parseAT(m)
         num = m[1].to_i
-        difficulty = integerValueOfDifficulty(m[2] || m[3])
+        difficulty = integerValueOfDifficulty(m[3] || m[4])
 
         return AT.new(num, difficulty)
       end
@@ -157,7 +157,7 @@ module BCDice
       # @return [EL]
       def parseEL(m)
         num = m[1].to_i
-        difficulty = integerValueOfDifficulty(m[2] || m[3])
+        difficulty = integerValueOfDifficulty(m[3] || m[4])
 
         return EL.new(num, difficulty)
       end
@@ -228,7 +228,7 @@ module BCDice
       def integerValueOfDifficulty(s)
         return 4 unless s
 
-        return s.to_i if /\A[2-6]\z/.match(s)
+        return s.to_i if /^[2-6]$/.match(s)
 
         return DIFFICULTY_SYMBOL_TO_INTEGER.fetch(s.upcase)
       end

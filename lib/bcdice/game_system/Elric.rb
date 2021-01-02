@@ -25,7 +25,7 @@ module BCDice
         # 100は常に致命的失敗
         return " ＞ 致命的失敗" if total >= 100
 
-        return " ＞ 決定的成功" if total <= (target / 5 + 0.9)
+        return " ＞ 決定的成功" if total <= ((target / 5).to_i + 0.9)
         return " ＞ 成功" if total <= target
         return " ＞ 致命的失敗" if (total >= 99) && (target < 100)
 
