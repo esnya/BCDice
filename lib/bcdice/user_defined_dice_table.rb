@@ -108,7 +108,7 @@ module BCDice
     def parse
       return if @rows
 
-      lines = @text.split(/\R/).map(&:rstrip).reject(&:empty?)
+      lines = @text.split(/\r?\n/).map(&:rstrip).reject(&:empty?)
       @name = lines.shift
       @type = lines.shift.upcase
       @rows = lines
